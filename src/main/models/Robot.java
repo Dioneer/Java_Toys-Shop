@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Robot extends Toy{
     public Robot(String toyName, int quantity) {
-        super(UUID.randomUUID().toString(), toyName, quantity, 20);
+        super(UUID.randomUUID().toString(), toyName, quantity, 0.2);
     }
 
     @Override

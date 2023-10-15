@@ -13,6 +13,10 @@ public abstract class Toy {
         return toyName;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -32,9 +36,13 @@ public abstract class Toy {
         this.frequency = frequency;
         count += this.quantity;
     }
+    public String showVin() {
+        return String.format("toy name - %s, frecquency - %.1f , toy class - %s\n",
+                getToyName(), getFrequency(), this.getClass().getSimpleName());
+    }
     private final String id;
     private final String toyName;
-    private final int quantity;
+    private int quantity;
     private double frequency;
     public static int count;
 }

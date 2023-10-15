@@ -1,11 +1,13 @@
 package main.views;
 
+import main.presenters.Views;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Introduction {
+public class Introduction{
     public String introHello() {
             Scanner scanner = new Scanner(System.in);
             String text = null;

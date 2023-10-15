@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Pazzle extends Toy{
     public Pazzle(String toyName, int quantity) {
-        super(UUID.randomUUID().toString(), toyName, quantity, 40);
+        super(UUID.randomUUID().toString(), toyName, quantity, 0.4);
     }
     @Override
     public String toString() {
