@@ -18,24 +18,24 @@ public class ToysModel implements Model{
         return showcase.getMainArray();
     }
     public List<Toy> changeFrequency(String name, double frequency){
-        try {
+            int count = 0;
             if(showcase.getMainArray().size()>1) {
                 for (int i = 0; i < showcase.getMainArray().size(); i++) {
                     if (showcase.getMainArray().get(i).getToyName().equals(name)) {
                         showcase.getMainArray().get(i).setFrequency(frequency);
+                        ++count;
                     }
                 }
-            }else{
-            throw new EmptyArrayException();
             }
-        }catch(EmptyArrayException e){
-            System.out.println(e.getMessage());
-        }
+            if(count>0){
+                System.out.println("Изменеия внесены");
+            } else {
+                System.out.println("Нет таких");
+            }
         return showcase.getMainArray();
     }
 
     public Toy prizeSelection(){
-        try {
             if(showcase.getMainArray().size()>1) {
                 for (int i = 0; i < showcase.getMainArray().size(); i++) {
                     double chance1 = Math.round(Math.random() * showcase.getMainArray().get(i).getFrequency() * 10);
@@ -43,12 +43,7 @@ public class ToysModel implements Model{
                 }
                 showcase.getMainArray().sort(new CompareToys());
                 present = showcase.getMainArray().get(0);
-            }else {
-                throw new EmptyArrayException();
             }
-        }catch(EmptyArrayException e){
-        System.out.println(e.getMessage());
-        }
         return present;
     }
     public List<Toy> listOfPresents(Toy toy){
@@ -63,26 +58,23 @@ public class ToysModel implements Model{
             }
         }
         presents.put(count, toy);
+        System.out.println(presents);
         return showcase.getMainArray();
     }
     public void makeCheck(String userName) {
-        try {
-            if (!presents.isEmpty()) {
+            if (presents.get(1)!=null) {
                 File file = new File("coupon for "+userName+".txt");
                 try (BufferedWriter writer=new BufferedWriter(new FileWriter(file, true))) {
                     for (Map.Entry<Integer, Toy> item : presents.entrySet()) {
                         writer.write(item.getKey()+": ");
                         writer.write(item.getValue()+"\n");
                     }
+                    System.out.println("Списоку быдет выдан по факту выхода");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-            } else {
-                throw new EmptyArrayException();
+            }else{
+                System.out.println("Список пуст, так как нет призов");
             }
-
-        }catch(EmptyArrayException e){
-            System.out.println(e.getMessage());
-        }
-}}
+    }
+}
